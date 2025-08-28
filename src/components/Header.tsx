@@ -2,25 +2,21 @@ import { FaSearch, FaBell, FaUser } from "react-icons/fa";
 
 function Header() {
   return (
-    <header>
-      <nav className="navegation">
-        {/* logo da Nebulas */}
-        <img src="" alt="Logo da Nebulas" />
-        <ul>
-          {/* icones de navegação */}
-          <li><FaSearch /></li>
-          <li><FaBell /></li>
-          <li><FaUser /></li>
+    <header className="bg-white p-4 flex justify-between items-center shadow">
+      <nav className="flex items-center space-x-4">
+        <ul className="flex space-x-4">
+          <li className="text-gray-600 hover:text-purple-600 cursor-pointer"><FaSearch /></li>
+          <li className="text-gray-600 hover:text-purple-600 cursor-pointer"><FaBell /></li>
+          <li className="text-gray-600 hover:text-purple-600 cursor-pointer"><FaUser /></li>
         </ul>
       </nav>
       
-      
-      {/* saudações */}
-      <h1 className='saudacoes'>Seja Bem-vindo(a), <span className='highlight'>fulano!</span></h1>
-
-
+      {/* Saudações */}
+      <h1 className="text-xl text-gray-700">
+        Seja Bem-vindo(a), <span className="text-purple-600 font-medium">fulano!</span>
+      </h1>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

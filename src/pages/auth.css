@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #4b004b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container principal */
+.container {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  background: transparent;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Painéis */
+.panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.6s ease-in-out;
+}
+
+.left-panel {
+  background: #e8e5df;
+  border-radius: 50px;
+  color: #4b004b;
+  z-index: 2;
+}
+
+.right-panel {
+  background: #c9c3b8;
+  color: #4b004b;
+}
+
+/* Inputs e botões */
+input {
+  width: 80%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 30px;
+  background-color: #e8e5df;
+  border: none;
+  outline: none;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  background: #4b004b;
+  color: #e8e5df;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+a {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #444;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #232323
+} 
+
+.main-container {
+  background-color: #e8e5df;
+  padding: 10px;
+  border-radius: 50px 30px 30px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
+}
+
+.bg-container {
+  background-color: #c9c3b8;
+  border-radius: 50px;
+}
+
+/* Animação do deslize */
+.container.register-mode .left-panel {
+  transform: translateX(100%);
+}
+
+.container.register-mode .right-panel {
+  transform: translateX(-100%);
+}
+
+.password-wrapper {
+  position: relative;
+  width: 80%;
+  margin: 0;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 40px; /* Aumente o padding à esquerda para o cadeado e à direita para o olho */
+  border-radius: 30px;
+  background-color: #e8e5df;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.password-wrapper i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4b004b;
+  cursor: pointer;
+  font-size: 18px;
+  transition: color 0.3s ease;
+  z-index: 2;
+}
+
+/* Posicione o ícone de cadeado à esquerda */
+.password-wrapper .fa-lock {
+  left: 16px;
+}
+
+/* Posicione o ícone de olho à direita */
+.password-wrapper .fa-eye,
+.password-wrapper .fa-eye-slash {
+  right: 16px;
+}
+
+.password-wrapper i:hover {
+  color: #800080;
+}
+
+.icon-wrapper {
+  position: relative;
+  width: 80%;
+  margin: 0;
+}
+
+.icon-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 12px; 
+  border-radius: 30px;
+  background-color: #e8e5df;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 16px;
+}
+
+.icon-wrapper input::placeholder {
+  position: relative;
+  left: 40px;
+  text-align: start;
+}
+
+.icon-wrapper i {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  color: #4b004b;
+  cursor: pointer;
+  font-size: 18px;
+  transition: color 0.3s ease;
+  z-index: 2;
+}

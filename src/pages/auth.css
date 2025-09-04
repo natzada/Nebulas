@@ -44,6 +44,7 @@ body {
 
 .right-panel {
   background: #c9c3b8;
+  border-radius: 50px 30px 30px 50px;
   color: #4b004b;
 }
 
@@ -118,7 +119,7 @@ a:hover {
 
 .password-wrapper input {
   width: 100%;
-  padding: 12px 40px 12px 40px; /* Aumente o padding à esquerda para o cadeado e à direita para o olho */
+  padding: 12px 45px 12px 45px; /* Aumente o padding à esquerda para o cadeado e à direita para o olho */
   border-radius: 30px;
   background-color: #e8e5df;
   border: none;
@@ -139,7 +140,7 @@ a:hover {
 
 /* Posicione o ícone de cadeado à esquerda */
 .password-wrapper .fa-lock {
-  left: 16px;
+  left: 15px;
 }
 
 /* Posicione o ícone de olho à direita */
@@ -160,19 +161,24 @@ a:hover {
 
 .icon-wrapper input {
   width: 100%;
-  padding: 12px 40px 12px 12px; 
+  padding: 12px 12px 12px 45px; 
   border-radius: 30px;
   background-color: #e8e5df;
   border: none;
   outline: none;
-  text-align: center;
   font-size: 16px;
 }
 
 .icon-wrapper input::placeholder {
   position: relative;
-  left: 40px;
-  text-align: start;
+  left: 0px;
+  text-align: left;
+}
+
+.password-wrapper input::placeholder {
+  position: relative;
+  left: 0px;
+  text-align: left;
 }
 
 .icon-wrapper i {

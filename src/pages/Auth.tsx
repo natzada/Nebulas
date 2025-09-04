@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/images/nebulas-logo.png";
 import "./Auth.css";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const Auth: React.FC = () => {
   const [isRegister, setIsRegister] = useState(false);
@@ -49,21 +49,29 @@ const Auth: React.FC = () => {
                     type={showPassword ? "text" : "password"}
                     placeholder="Senha"
                   />
+                  <i className="fa-solid fa-lock" style={{ left: "16px" }}></i>
                   <i
-                    className={`fa-solid ${showPassword ? "fa-eye" : "fa-eye-slash"}`}
+                    className={`fa-solid ${
+                      showPassword ? "fa-eye" : "fa-eye-slash"
+                    }`}
                     onClick={togglePasswordVisibility}
+                    style={{ right: "16px" }}
                   ></i>
                 </div>
 
                 {/* Confirmar senha */}
                 <div className="password-wrapper">
                   <input
-                    type={showConfirmPassword ? "text" : "password"}
-                    placeholder="Confirmar Senha"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Senha"
                   />
+                  <i className="fa-solid fa-lock" style={{ left: "16px" }}></i>
                   <i
-                    className={`fa-solid ${showConfirmPassword ? "fa-eye" : "fa-eye-slash"}`}
+                    className={`fa-solid ${
+                      showPassword ? "fa-eye" : "fa-eye-slash"
+                    }`}
                     onClick={toggleConfirmPasswordVisibility}
+                    style={{ right: "16px" }}
                   ></i>
                 </div>
 
@@ -79,16 +87,17 @@ const Auth: React.FC = () => {
 
                 {/* Senha */}
                 <div className="password-wrapper">
-                  <div className="icon-wrapper">
-                    <i className="fa-solid fa-lock"></i>
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Senha"
-                    />
-                  </div>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Senha"
+                  />
+                  <i className="fa-solid fa-lock" style={{ left: "16px" }}></i>
                   <i
-                    className={`fa-solid ${showPassword ? "fa-eye" : "fa-eye-slash"}`}
+                    className={`fa-solid ${
+                      showPassword ? "fa-eye" : "fa-eye-slash"
+                    }`}
                     onClick={togglePasswordVisibility}
+                    style={{ right: "16px" }}
                   ></i>
                 </div>
 

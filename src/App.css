@@ -7,7 +7,8 @@
     --color-blueF: #5263B5;       
     --color-yellowF: #D2BE2D;         
     --color-text1: #3b3b3b;         
-    --color-text2: #64C05D;          
+    --color-text2: #64C05D;
+    --color-textmuted: #d4d2d2;          
 }
 
 body {

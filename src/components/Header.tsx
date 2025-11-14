@@ -2,7 +2,12 @@ import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import Switch from "./Switch";
 
-function Header() {
+interface HeaderProps {
+  isDarkMode: boolean;
+  toggleTheme: () => void;
+}
+
+function Header({ isDarkMode, toggleTheme }: HeaderProps) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = () => {
@@ -10,10 +15,13 @@ function Header() {
   };
 
   return (
-    <header className="bg-primary p-4 flex items-center justify-around relative">
+    <header className="p-4 flex items-center justify-around relative">
       {/* Barra de pesquisa fixa */}
       <div className="flex items-center flex-1 max-w-2xl">
-        <form onSubmit={handleSearch} className="flex items-center space-x-2 w-full relative">
+        <form
+          onSubmit={handleSearch}
+          className="flex items-center space-x-2 w-full relative"
+        >
           <div className="relative w-full">
             <input
               type="text"
@@ -42,9 +50,10 @@ function Header() {
             </button>
           </div>
         </form>
-
       </div>
-        <Switch />
+      <div className="">
+        <Switch isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+      </div>
     </header>
   );
 }

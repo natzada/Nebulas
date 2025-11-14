@@ -1,29 +1,95 @@
-import { FaHome } from "react-icons/fa";
-import { IoIosChatbubbles, IoIosSettings } from "react-icons/io";
-import logo from "../assets/images/logo.png";
 import { useState } from "react";
-import Chatbot from "./ChatBot";
+import logo from "../assets/images/logo.png";
+import { House, User, MessageSquareText, Settings, LogOut } from "lucide-react";
+
+type Page = "home" | "profile" | "contact" | "settings";
 
 function VerticalBar() {
-  const [isOpen, setIsOpen] = useState(false);
-
+  const [selected, setSelected] = useState<Page>("home");
   return (
-    <div className="verticalBar bg-text1 m-5 rounded-3xl py-8 px-2 w-50 h-185 flex flex-col items-center">
-      <img src={logo} alt="Logo da Nebulas" className="h-16 mb-12" />
-      <nav className="vertical-navigation w-25 flex-1 flex items-center justify-center rounded-4xl p-2">
-        <ul className="space-y-4">
-          <li className="text-white border-l-1 cursor-pointer p-2">
-            <FaHome size={30} />
-            <p>Início</p>
-          </li>
+    <div className={`verticalBar bg-text1 m-5 rounded-3xl py-8 px-2 w-50 h-[95%] flex flex-col items-start`}>
+      <img src={logo} alt="Logo da Nebulas" className="h-16 m-3 mb-7" />
+
+      <nav className="w-full flex-1 flex items-center justify-center">
+        <ul className="space-y-6 w-full">
+          {/* Início */}
           <li
-            className="text-white cursor-pointer p-2 rounded-3xl"
-            onClick={() => setIsOpen(true)}
+            onClick={() => setSelected("home")}
+            className={`flex items-center gap-4 cursor-pointer px-6 py-2 rounded-r-3xl transition-all ${
+              selected === "home"
+                ? "border-l-4 border-primary text-white bg-white/5"
+                : "hover:bg-white/10 text-textmuted"
+            }`}
           >
-            <IoIosChatbubbles size={30} />
+            <House size={30} />
+            <span
+              className={`font-medium 
+              ${selected === "home" ? "text-white" : "text-textmuted"}`}
+            >
+              Início
+            </span>
           </li>
-          <li className="text-white cursor-pointer p-2 rounded-3xl">
-            <IoIosSettings size={30} />
+
+          {/* Perfil */}
+          <li
+            onClick={() => setSelected("profile")}
+            className={`flex items-center gap-4 cursor-pointer px-6 py-2 rounded-r-3xl transition-all ${
+              selected === "profile"
+                ? "border-l-4 border-primary text-white bg-white/5"
+                : "hover:bg-white/10 text-textmuted"
+            }`}
+          >
+            <User size={30} />
+            <span
+              className={`font-medium 
+              ${selected === "profile" ? "text-white" : "text-textmuted"}`}
+            >
+              Início
+            </span>
+          </li>
+
+          {/* Contato */}
+          <li
+            onClick={() => setSelected("contact")}
+            className={`flex items-center gap-4 cursor-pointer px-6 py-2 mb-60 rounded-r-3xl transition-all ${
+              selected === "contact"
+                ? "border-l-4 border-primary text-white bg-white/5"
+                : "hover:bg-white/10 text-textmuted"
+            }`}
+          >
+            <MessageSquareText size={30} />
+            <span
+              className={`font-medium 
+              ${selected === "contact" ? "text-white" : "text-textmuted"}`}
+            >
+              Início
+            </span>
+          </li>
+
+          {/* Configurações */}
+          <li
+            onClick={() => setSelected("settings")}
+            className={`flex items-center gap-4 cursor-pointer px-4 py-2 rounded-r-3xl transition-all ${
+              selected === "settings"
+                ? "border-l-4 border-primary text-white bg-white/5"
+                : "hover:bg-white/10 text-textmuted"
+            }`}
+          >
+            <Settings size={30} />
+           <span
+              className={`font-medium 
+              ${selected === "settings" ? "text-white" : "text-textmuted"}`}
+            >
+              Início
+            </span>
+          </li>
+
+          {/* Sair (sempre no final) */}
+          <li className="flex items-center gap-4 text-white cursor-pointer px-4 py-2 hover:bg-red-500/20 rounded-3xl transition mt-auto mb-8">
+            <LogOut size={30} className="text-red-400" />
+            <span className="text-textmuted font-medium text-red-400">
+              Sair
+            </span>
           </li>
         </ul>
       </nav>

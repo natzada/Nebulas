@@ -22,7 +22,7 @@ const Auth: React.FC = () => {
             <p className="text-3xl font-extrabold text-center">
               {isRegister ? "Já tem uma conta?" : "Olá! Não tem uma conta?"}
             </p>
-            <button onClick={() => setIsRegister(!isRegister)}>
+            <button className="button" onClick={() => setIsRegister(!isRegister)}>
               {isRegister ? "Login" : "Registre-se"}
             </button>
           </div>
@@ -35,17 +35,22 @@ const Auth: React.FC = () => {
                 {/* Nome Completo */}
                 <div className="icon-wrapper">
                   <i className="fa-solid fa-user"></i>
-                  <input type="text" placeholder="Nome completo" />
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="Nome completo"
+                  />
                 </div>
                 {/* Email */}
                 <div className="icon-wrapper">
                   <i className="fa-solid fa-envelope"></i>
-                  <input type="email" placeholder="E-mail" />
+                  <input className="input" type="email" placeholder="E-mail" />
                 </div>
 
                 {/* Senha */}
                 <div className="password-wrapper">
                   <input
+                    className="input"
                     type={showPassword ? "text" : "password"}
                     placeholder="Senha"
                   />
@@ -62,6 +67,7 @@ const Auth: React.FC = () => {
                 {/* Confirmar senha */}
                 <div className="password-wrapper">
                   <input
+                    className="input"
                     type={showPassword ? "text" : "password"}
                     placeholder="Senha"
                   />
@@ -75,19 +81,20 @@ const Auth: React.FC = () => {
                   ></i>
                 </div>
 
-                <button onClick={() => setIsRegister(true)}>Cadastrar</button>
+                <button className="button" onClick={() => setIsRegister(true)}>Cadastrar</button>
               </>
             ) : (
               <>
                 <h2 className="text-2xl font-extrabold">Login</h2>
                 <div className="icon-wrapper">
                   <i className="fa-solid fa-user"></i>
-                  <input type="text" placeholder="Username" />
+                  <input className="input" type="text" placeholder="Username" />
                 </div>
 
                 {/* Senha */}
                 <div className="password-wrapper">
                   <input
+                    className="input"
                     type={showPassword ? "text" : "password"}
                     placeholder="Senha"
                   />
@@ -102,7 +109,7 @@ const Auth: React.FC = () => {
                 </div>
 
                 <a href="#">Esqueceu a senha?</a>
-                <button onClick={() => setIsRegister(false)}>Login</button>
+                <button className="button" onClick={() => setIsRegister(false)}>Login</button>
               </>
             )}
           </div>

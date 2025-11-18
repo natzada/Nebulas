@@ -28,23 +28,25 @@ function Header({ isDarkMode, toggleTheme }: HeaderProps) {
               placeholder="Pesquise sua farmácia..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="
+              className={`
                 h-12 px-4 pr-12
-                bg-white text-text1 rounded-3xl
+                rounded-3xl
                 focus:outline-none
                 shadow-md
                 w-full
-              "
+                ${isDarkMode ? "bg-[#343434] text-white" : "bg-white text-text1"  }
+              `}
             />
             <button
               type="submit"
-              className="
+              className={`
                 absolute right-2 top-1/2 transform -translate-y-1/2
                 text-text1 hover:text-identity 
                 cursor-pointer 
                 p-1
                 transition-colors
-              "
+                ${isDarkMode ? "text-white" : "text-text1"}
+              `}
             >
               <FaSearch size={18} />
             </button>

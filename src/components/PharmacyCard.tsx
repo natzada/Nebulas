@@ -1,6 +1,10 @@
 // PharmacyCard.tsx
 import { Pencil } from 'lucide-react';
 import clsx from 'clsx';
+import farmaciaP from "../assets/images/farmacia-P.jpg"
+import farmaciaM from "../assets/images/farmacia-M.png"
+import farmaciaG from "../assets/images/farmacia-G.jpeg"
+
 
 type Size = "P" | "M" | "G";
 
@@ -24,6 +28,15 @@ interface PharmacyCardProps {
 }
 
 export default function PharmacyCard({ pharmacy, onEdit }: PharmacyCardProps) {
+
+  if (pharmacy.size === 'P') {
+    pharmacy.imageUrl = farmaciaP
+  } else if(pharmacy.size === 'M') {
+    pharmacy.imageUrl = farmaciaM
+  } else if(pharmacy.size === 'G') {
+    pharmacy.imageUrl = farmaciaG
+  }
+
   return (
     <div className="w-85 h-55 bg-black rounded-3xl shadow-lg overflow-hidden flex flex-col m-8 hover:shadow-2xl transition-shadow">
       {/* Header com cor dinâmica */}

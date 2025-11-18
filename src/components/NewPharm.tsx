@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import PharmacyCard from "./PharmacyCard";
-import farmacia from "../assets/images/farmacia.png";
 
 const username = "fulano";
 
@@ -19,7 +17,7 @@ function NewPharm({ isDarkMode }: { isDarkMode: boolean }) {
       </h2>
       <div className="flex">
         <div
-          className={`hover:shadow-2xl transition-shadow w-85 h-55 rounded-3xl flex justify-center items-center p-4 m-8 transition-colors duration-500 shadow-lg
+          className={`hover:shadow-2xl w-85 h-55 rounded-3xl flex justify-center items-center p-4 m-8 transition-colors duration-500 shadow-lg
           ${isDarkMode ? "bg-[#606060]" : "bg-neutral-300"}
           `}
         >
@@ -33,7 +31,6 @@ function NewPharm({ isDarkMode }: { isDarkMode: boolean }) {
             address: "Rua São Luís Gonsaulo, 849",
             size: "M",
             area: "73m²",
-            imageUrl: farmacia,
           }}
           onEdit={() => alert("Editar farmácia")}
         />

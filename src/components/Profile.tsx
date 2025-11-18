@@ -1,10 +1,4 @@
-import React from 'react';
-
-interface ProfileProps {
-  onClose: () => void;
-}
-
-function Profile({ onClose }: ProfileProps) {
+function Profile() {
   return (
     <div className="profile bg-white p-4 rounded-lg shadow mt-4 flex items-center space-x-4 w-80">
       {/* Imagem de perfil */}
@@ -58,7 +52,6 @@ function Profile({ onClose }: ProfileProps) {
         </button>
         <button 
           className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
-          onClick={onClose}
           title="Fechar"
         >
           <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

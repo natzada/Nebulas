@@ -1,66 +1,191 @@
-function Profile() {
-  return (
-    <div className="profile bg-white p-4 rounded-lg shadow mt-4 flex items-center space-x-4 w-80">
-      {/* Imagem de perfil */}
-      <div className="flex-shrink-0">
-        <img 
-          src="" 
-          alt="Profile" 
-          className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center"
-        />
-      </div>
-      
-      {/* Informações do usuário */}
-      <div className="flex-grow">
-        <h2 className="text-sm font-medium text-gray-600">
-          @<span className="text-gray-400">username</span>
-        </h2>
-        <h1 className="text-lg font-semibold text-gray-800" id="fullName">
-          Nome Completo
-        </h1>
-        <div className="profile-info text-sm text-gray-500 space-y-1 mt-2">
-          <p className="flex items-center">
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            example@gmail.com
-          </p>
-          <p className="flex items-center">
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            +55 11 91234-5678
-          </p>
-          <p className="flex items-center">
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            01/01/2008
-          </p>
-        </div>
-      </div>
+// src/components/Profile.tsx
+import { useState } from "react";
+import { Pencil, X, Upload } from "lucide-react";
 
-      {/* Botões de ação */}
-      <div className="flex flex-col space-y-3 ml-2">
-        <button 
-          className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
-          title="Alternar tema"
-        >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-          </svg>
-        </button>
-        <button 
-          className="text-gray-600 hover:text-purple-600 transition-colors duration-200"
-          title="Fechar"
-        >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+interface ProfileProps {
+  isDarkMode: boolean;
+}
+
+export default function Profile({ isDarkMode }: ProfileProps) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [user, setUser] = useState({
+    name: "Fulano da Silva",
+    email: "fulano@email.com",
+    avatar: "", // será uma URL (data URL ou blob)
+  });
+
+  const [tempUser, setTempUser] = useState(user);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setTempUser({ ...tempUser, avatar: reader.result as string });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSave = () => {
+    setUser(tempUser);
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setTempUser(user);
+    setIsEditing(false);
+  };
+
+  return (
+    <div className="w-full h-full flex flex-col">
+      {/* Cabeçalho azul */}
+      <header className="bg-blueF text-white px-8 py-20 w-full h-full rounded-3xl shadow-lg">
+        <h1 className="text-4xl">
+          Olá,{" "}
+          <span className="capitalize font-bold">
+            {(isEditing ? tempUser.name : user.name).split(" ")[0]}!
+          </span>
+        </h1>
+      </header>
+
+      {/* Conteúdo principal */}
+      <div className="flex-1 flex items-start justify-center -mt-16 px-6">
+        <div className={`w-full max-w-md rounded-3xl p-8 relative
+          ${isDarkMode? "bg-text1" : "bg-neutral-200"}
+          `}>
+          {/* Foto com botão lápis / X */}
+          <div className="absolute -top-16 left-1/2 transform -translate-x-1/2">
+            <div className="relative">
+              <div className={`w-32 h-32 border-8 rounded-full shadow-xl overflow-hidden
+                ${isDarkMode? "bg-neutral-600 border-neutral-400" : "bg-neutral-300 border-white"}
+                `}>
+                {(isEditing ? tempUser.avatar : user.avatar) ? (
+                  <img
+                    src={isEditing ? tempUser.avatar : user.avatar}
+                    alt="Perfil"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className={`w-full h-full flex items-center justify-center
+                  ${isDarkMode? "bg-neutral-600" : "bg-neutral-400"}
+                  `}>
+                    <span className={`text-5xl font-bold
+                      ${isDarkMode? "text-neutral-800" : "text-neutral-600"}
+                      `}>
+                      {(isEditing ? tempUser.name : user.name).charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {!isEditing ? (
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className={`absolute bottom-2 right-2 p-2 rounded-full shadow-lg hover:shadow-xl transition
+                    ${isDarkMode? "bg-neutral-500" : "bg-white"}
+                    `}
+                >
+                  <Pencil size={18} className={`${isDarkMode? "text-white" : "text-gray-700"}`} />
+                </button>
+              ) : (
+                <button
+                  onClick={handleCancel}
+                  className={`absolute bottom-2 right-2 p-2 rounded-full shadow-lg hover:shadow-xl transition
+                    ${isDarkMode? "bg-neutral-500" : "bg-white"}
+                    `}
+                >
+                  <X size={18} className={`${isDarkMode? "text-white" : "text-gray-700"}`} />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Campos */}
+          <div className="mt-20 space-y-6">
+            {/* Nome */}
+            <div>
+              <label className={`block text-sm font-medium mb-2
+                ${isDarkMode? "text-neutral-200" : "text-gray-700"}
+                `}>Nome</label>
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={tempUser.name}
+                  onChange={(e) => setTempUser({ ...tempUser, name: e.target.value })}
+                  className="w-full px-5 py-4 bg-white rounded-2xl shadow-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blueF"
+                  autoFocus
+                />
+              ) : (
+                <div className="px-5 py-4 bg-white rounded-2xl shadow-sm text-gray-800">
+                  {user.name}
+                </div>
+              )}
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className={`block text-sm font-medium mb-2
+                ${isDarkMode? "text-neutral-200" : "text-gray-700"}
+                `}>Email</label>
+              {isEditing ? (
+                <input
+                  type="email"
+                  value={tempUser.email}
+                  onChange={(e) => setTempUser({ ...tempUser, email: e.target.value })}
+                  className="w-full px-5 py-4 bg-white rounded-2xl shadow-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-blueF"
+                />
+              ) : (
+                <div className="px-5 py-4 bg-white rounded-2xl shadow-sm text-gray-800">
+                  {user.email}
+                </div>
+              )}
+            </div>
+
+            {/* Upload de foto (só no modo edição) */}
+            {isEditing && (
+              <div>
+                <label className={`block text-sm font-medium mb-2
+                ${isDarkMode? "text-neutral-200" : "text-gray-700"}
+                `}>
+                  Foto do perfil
+                </label>
+                <label className="flex items-center justify-center gap-3 px-5 py-4 bg-white rounded-2xl shadow-sm cursor-pointer hover:bg-gray-50 transition">
+                  <Upload size={20} className="text-gray-600" />
+                  <span className="text-gray-700">
+                    {tempUser.avatar ? "Trocar foto" : "Escolher foto"}
+                  </span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                </label>
+              </div>
+            )}
+
+            {/* Botões Salvar / Cancelar */}
+            {isEditing && (
+              <div className="flex gap-4 pt-4">
+                <button
+                  onClick={handleSave}
+                  className="flex-1 py-4 bg-blueF text-white font-bold rounded-2xl shadow-lg hover:bg-blue-700 transition"
+                >
+                  Salvar
+                </button>
+                <button
+                  onClick={handleCancel}
+                  className="flex-1 py-4 bg-gray-300 text-gray-700 font-bold rounded-2xl shadow-lg hover:bg-gray-400 transition"
+                >
+                  Cancelar
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
-
-export default Profile;

@@ -11,6 +11,30 @@
     --color-textmuted: #d4d2d2;          
 }
 
-body {
 
+/* App.css - adicione no final */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thumb-gray-300 {
+  background: #d1d5db;
+}
+
+.scrollbar-track-gray-100 {
+  background: #f3f4f6;
+}
+
+/* Responsivo extra para mobile */
+@media (max-width: 768px) {
+  .md\\:w-64 {
+    width: 280px !important;
+  }
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+  }
 }
